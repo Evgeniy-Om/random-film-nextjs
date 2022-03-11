@@ -1,0 +1,44 @@
+.root {
+    //position: absolute;
+    //bottom: 0;
+    margin: 15px 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.wrapper {
+    text-align: center;
+}
+.nameFilm {
+    font-size: 20px;
+
+    @media (max-height: 568px) {
+        font-size: 17px;
+    }
+}
+
+.rating {
+    display: block;
+    margin-top: 5px;
+    font-size: 15px;
+    text-align: center;
+    color: gray;
+
+    @media (max-height: 568px) {
+        font-size: 13px;
+    }
+}
+
+.skeletonName {
+    margin-bottom: 8px;
+    width: 300px;
+    height: 30px;
+    border-radius: 4px;
+}
+
+.skeletonRating {
+    width: 200px;
+    height: 20px;
+    border-radius: 4px;
+}

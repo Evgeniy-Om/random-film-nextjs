@@ -2,8 +2,27 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Poster from '../components/Poster/Poster'
+import NameFilm from '../components/NameFilm/NameFilm'
+import RandomFilmButton from '../components/RandomFilmButton/RandomFilmButton'
+import CountrySelect from '../components/CountrySelect'
+import GenreSelect from '../components/GenreSelect'
+import YearsSlider from '../components/YearsSlider'
+import RatingSlider from '../components/RatingSlider'
+import { useAppSelector } from '../hooks/redux'
+import { kinopoiskSlice } from '../store/kinopoiskSlice'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 
 const Home: NextPage = () => {
+  const {error} = useAppSelector(state => state.kinopoisk)
+  const {shuffle} = kinopoiskSlice.actions
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(shuffle())
+  }, [])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,43 +32,22 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className={styles.wrapper}>
+          <div className={styles.container}>
+            <div className={styles.filmWrapper}>
+              <Poster/>
+              <NameFilm/>
+            </div>
+            <RandomFilmButton/>
+            {error && <h2>Ошибка: {error}</h2>}
+            {/* Фильтры поиска*/}
+            <div className={styles.filtersWrapper}>
+              <CountrySelect/>
+              <GenreSelect/>
+              <YearsSlider/>
+              <RatingSlider/>
+            </div>
+          </div>
         </div>
       </main>
 
