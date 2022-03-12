@@ -1,0 +1,20 @@
+{
+  "customSyntax": "postcss-scss",
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-rational-order"
+  ],
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "indentation": [
+      "tab"
+    ],
+    "plugin/rational-order": [true, {
+      "border-in-box-model": true
+    }],
+    "color-hex-case": "upper",
+    "selector-class-pattern": "^.*$"
+  }
+}

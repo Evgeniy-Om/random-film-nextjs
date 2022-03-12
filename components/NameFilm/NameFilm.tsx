@@ -7,7 +7,7 @@ function NameFilm() {
     const {currentFilmNumber, listFilms, status} = useAppSelector(state => state.kinopoisk)
     const {nameRu, year, rating} = listFilms[currentFilmNumber]
     return (
-        <div className={styles.root}>
+        <div className={styles._}>
             <div className={!nameRu || status === 'loading' ? "disabled" : styles.wrapper}>
                 <span className={styles.nameFilm}>{`${nameRu} (${year})`}</span>
                 <span className={styles.rating}>Рейтинг: {rating}</span>

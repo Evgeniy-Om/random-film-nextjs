@@ -1,23 +1,21 @@
 ._ {
-  position: relative;
-  height: 100%;
-}
-.link {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 100%;
+	position: relative;
+	width: 300px;
+	height: 100%;
+	margin-right: auto;
+	margin-left: auto;
 }
 
-.image {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+.link {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
 }
 
 .skeleton {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 100%;
+	display: block;
+	height: 100%;
+	margin-right: auto;
+	margin-left: auto;
 }
