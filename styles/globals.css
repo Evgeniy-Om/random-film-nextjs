@@ -25,6 +25,21 @@ a {
 	box-sizing: border-box;
 }
 
+.slider-title {
+	margin-bottom: 10px;
+	margin-left: -10px;
+	font-size: 17px;
+}
+
+.slider-wrapper {
+	margin: 0 10px;
+}
+
 .disabled {
 	display: none;
+}
+
+:root {
+	--primery-color: #1976d2;
+	--success-color: #63b277;
 }

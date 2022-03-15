@@ -6,13 +6,15 @@ const App = dynamic(() => import('../components/App/App'), {ssr: false})
 
 const Home: NextPage = () => {
 
-    return (<>
+    return (
+        <>
             <Head>
                 <title>Генератор случайных фильмов</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <App/>
-        </>)
+        </>
+    )
 }
 
 export default Home

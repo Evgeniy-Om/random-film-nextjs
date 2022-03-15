@@ -1,7 +1,7 @@
 import {useDispatch} from 'react-redux'
-import {useAppSelector} from '../hooks/redux'
-import {kinopoiskSlice} from '../store/kinopoiskSlice'
 import {Slider} from '@mui/material'
+import { kinopoiskSlice } from '../store/kinopoiskSlice'
+import { useAppSelector } from '../hooks/redux'
 
 const marks = [
    {

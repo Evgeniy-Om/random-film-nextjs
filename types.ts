@@ -1,4 +1,4 @@
-import {rootReducer, setupStore} from './store/store'
+import { rootReducer, setupStore } from './store/store'
 import top250ListFilms from './store/top250ListFilms'
 
 export type RootState = ReturnType<typeof rootReducer>
@@ -6,11 +6,12 @@ export type AppStore = ReturnType<typeof setupStore>
 export type AppDispatch = AppStore['dispatch']
 
 export type InitialStateTypes = {
-    selectedCountry: {id: number, country: string}
-    selectedGenre: {id: number, genre: string}
+    selectedCountry: { id: number | string, country: string }
+    selectedGenre: { id: number, genre: string }
     selectedYears: [number, number]
     selectedRating: [number, number]
     currentFilmNumber: number
+    counter: number
     listFilms: typeof top250ListFilms
     isChangedFilters: boolean
     currentPageResponse: number
@@ -28,10 +29,8 @@ export type FetchParamsTypes = {
     yearTo: number
     order: string
     page: number
-    country?: number
+    country?: number | string
     genre?: number
 }
 
-export type ListFilmsTypes = {
-    
-}
+export type ListFilmsTypes = {}

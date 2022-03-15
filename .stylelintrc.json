@@ -14,7 +14,7 @@
     "plugin/rational-order": [true, {
       "border-in-box-model": true
     }],
-    "color-hex-case": "upper",
+    "color-hex-case": "lower",
     "selector-class-pattern": "^.*$"
   }
 }
