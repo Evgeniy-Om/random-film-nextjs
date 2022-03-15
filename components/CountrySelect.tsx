@@ -3,7 +3,7 @@ import {kinopoiskSlice} from '../store/kinopoiskSlice'
 import {useAppSelector} from '../hooks/redux'
 import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material'
 
-const countriesList = [
+const countriesListKP = [
     {id: 0, country: "Все страны"},
     {id: 2, country: "Россия", addId: 13},
     {id: 1, country: "США"},
@@ -22,10 +22,32 @@ const countriesList = [
     {id: 9, country: "Япония"},
 ]
 
+const countriesListTMDB = [
+    {id: 0, country: "Все страны"},
+    {id: "RU", country: "Россия"},
+    {id: "SU", country: "СССР"},
+    {id: "US", country: "США"},
+    {id: "AT", country: "Австралия"},
+    {id: "GB", country: "Великобритания"},
+    {id: "DE", country: "Германия"},
+    {id: "DK", country: "Дания"},
+    {id: "IN", country: "Индия"},
+    {id: "ES", country: "Испания"},
+    {id: "IT", country: "Италия"},
+    {id: "CA", country: "Канада"},
+    {id: "CN", country: "Китай"},
+    {id: "KR", country: "Корея Южная"},
+    {id: "MX", country: "Мексика"},
+    {id: "FR", country: "Франция"},
+    {id: "SE", country: "Швеция"},
+    {id: "JP", country: "Япония"},
+]
+
 function CountrySelect() {
     const {selectedCountry} = useAppSelector(state => state.kinopoisk)
     const {changeNumPageResponse, disableButton, isNewFilters, selectCountry} = kinopoiskSlice.actions
     const dispatch = useDispatch()
+    const countriesList = countriesListKP
 
     const handleChange = (event: SelectChangeEvent) => {
         const newSelectedCountry =
