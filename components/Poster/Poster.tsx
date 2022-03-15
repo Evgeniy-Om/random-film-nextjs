@@ -9,32 +9,41 @@ function Poster() {
     const [imageLoaded, setImageLoaded] = useState(false)
 
     const src = listFilms[currentFilmNumber].posterUrlPreview
-    const image = new Image()
-    image.src = src
 
     useEffect(() => {
-        setImageLoaded(false)
-        image.onload = () => setImageLoaded(true)
-    }, [src])
+            setImageLoaded(false)
 
-    return (<div className={styles._}>
-            <a href="#" className={!imageLoaded ? 'disabled' : styles.link}>
-                <ImageNJS src={src}
-                          className={styles.image}
-                          layout="fill"
-                          objectFit="contain"
-                          loading="eager"
-                          priority
-                />
-            </a>
+            const image = new Image()
+            image.src = src
+            image.onload = () => {
+                setImageLoaded(true)
+            }
+        }
+        , [src])
+
+    return (
+        <div className={styles._}>
+            <div className={!imageLoaded || status === 'loading' ? 'disabled' : styles.posterContainer}>
+                <a href="#" className={styles.link}>
+                    <ImageNJS
+                        src={src}
+                        className={styles.image}
+                        layout="fill"
+                        objectFit="contain"
+                        quality={25}
+                        priority
+                    />
+                </a>
+            </div>
             <Skeleton
-                className={!imageLoaded ? styles.skeleton : 'disabled'}
-                width="250px"
+                className={status === 'loading' ? styles.skeleton : 'disabled'}
+                width="240px"
                 height="100%"
                 variant="rectangular"
                 animation="wave"
             />
-        </div>)
+        </div>
+    )
 }
 
 export default Poster
