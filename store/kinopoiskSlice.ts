@@ -7,7 +7,7 @@ export const kinopoiskSlice = createSlice({
         name: 'kinopoisk',
         initialState,
         reducers: {
-            selectCountry(state, action: PayloadAction<{ id: number, country: string }>) {
+            selectCountry(state, action: PayloadAction<{ id: number | string, country: string }>) {
                 state.selectedCountry = action.payload
             },
             selectGenre(state, action: PayloadAction<{ id: number, genre: string }>) {
@@ -19,8 +19,11 @@ export const kinopoiskSlice = createSlice({
             selectRating(state, action: PayloadAction<[number, number]>) {
                 state.selectedRating = action.payload
             },
-            numFilm(state, action: PayloadAction<number>) {
+            changeCurrentFilmNumber(state, action: PayloadAction<number>) {
                 state.currentFilmNumber = action.payload
+            },
+            changeCounter(state, action: PayloadAction<number>) {
+                state.counter = action.payload
             },
             shuffle(state) {
                 state.listFilms = shuffleListFilms(state.listFilms)

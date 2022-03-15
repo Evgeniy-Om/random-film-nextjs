@@ -7,7 +7,7 @@
 
 .container {
 	width: 100%;
-	max-width: 800px;
+	max-width: 700px;
 	margin: 0 auto;
 	padding: 0 30px;
 }
@@ -34,4 +34,19 @@
 	@media (max-width: 450px) {
 		grid-template-columns: 1fr;
 	}
+}
+
+.mainButtonsContainer {
+	position: relative;
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	margin: 0 auto 20px;
+}
+
+.listsButtonsContainer {
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	margin-bottom: 20px;
 }

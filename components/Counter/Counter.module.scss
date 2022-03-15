@@ -1,0 +1,20 @@
+._ {
+	position: relative;
+
+	//top: -3px;
+	//left: -3px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 45px;
+	height: 45px;
+	border: solid 1px #1976d2;
+	border-radius: 5px;
+	color: var(--primery-color);
+	font-weight: 700;
+	font-size: 20px;
+}
+
+.more100 {
+	font-size: 17px;
+}
