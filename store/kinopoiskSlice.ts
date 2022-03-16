@@ -25,6 +25,12 @@ export const kinopoiskSlice = createSlice({
             changeCounter(state, action: PayloadAction<number>) {
                 state.counter = action.payload
             },
+            deleteCurrentFilmFromList(state) {
+                let list = [...state.listFilms]
+                list.splice(state.currentFilmNumber-1, 1)
+                state.listFilms = list
+                state.currentFilmNumber--
+            },
             shuffle(state) {
                 state.listFilms = shuffleListFilms(state.listFilms)
             },

@@ -1,27 +1,16 @@
-import { useDispatch } from 'react-redux'
-import { useAppSelector } from '../../hooks/redux'
-import { kinopoiskSlice } from '../../store/kinopoiskSlice'
 import styles from './AddToWhiteListButton.module.scss'
 import { Button } from '@mui/material'
-import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
+import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck'
+import useAddToList from '../../hooks/useAddToList'
 
 function AddToWhiteListButton() {
-    const {disableButton} = kinopoiskSlice.actions
-    const {currentFilmNumber} = useAppSelector(state => state.kinopoisk)
-    const {changeCurrentFilmNumber} = kinopoiskSlice.actions
-    const dispatch = useDispatch()
-
-    const handleClick = () => {
-        console.log(currentFilmNumber)
-        dispatch(changeCurrentFilmNumber(currentFilmNumber - 1))
-        dispatch(disableButton(false))
-    }
+    const {addToList} = useAddToList("whitelist")
 
     return (<div className={styles._}>
         <Button
             className={styles.button}
             startIcon={<PlaylistAddCheckIcon/>}
-            onClick={handleClick}
+            onClick={addToList}
             variant="contained"
             color="success"
         >
