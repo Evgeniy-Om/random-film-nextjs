@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { DataGrid, GridCellParams, ruRU } from '@mui/x-data-grid'
+import { DataGrid, GridCellParams, GridColDef, ruRU } from '@mui/x-data-grid'
 import ImageNJS from 'next/image'
 import Head from 'next/head'
 import { listFilmsTypes } from '../../types'
@@ -7,7 +6,7 @@ import styles from './FavoritesPage.module.scss'
 import Paper from '@mui/material/Paper'
 import MoveToBlackListButton from '../../components/MoveToBlackListButton/MoveToBlackListButton'
 
-const columns = [
+const columns: GridColDef[] = [
     {
         field: 'posterUrlPreview',
         headerName: 'Постер',
@@ -15,7 +14,7 @@ const columns = [
         filterable: true,
         width: 100,
         disableColumnMenu: true,
-        renderCell: (param: GridCellParams) => {
+        renderCell: (param: GridCellParams<string>) => {
             return (
                 // <div href={param.value} className={styles._} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.poster}>
@@ -45,8 +44,8 @@ if (typeof window !== 'undefined') {
 
 const rows = listFilms.map(f => ({
     ...f,
-    countries: f.countries.map((c, i) => i === 0 ? c.country : ` ${c.country}`),
-    genres: f.genres.map((g, i) => i === 0 ? g.genre : ` ${g.genre}`),
+    countries: f.countries.map((c, i) => i === 0 ? c.country : ` ${c.country}`).toString(),
+    genres: f.genres.map((g, i) => i === 0 ? g.genre : ` ${g.genre}`).toString(),
 
 }))
 
@@ -62,7 +61,7 @@ export default function FavoritesPage() {
                     getRowId={(row) => row.filmId}
                     rowHeight={125}
                     columns={columns}
-                    pageSize={20}
+                    pageSize={10}
                     rowsPerPageOptions={[10,20,50,100]}
                     checkboxSelection
                     localeText={ruRU.components.MuiDataGrid.defaultProps.localeText}

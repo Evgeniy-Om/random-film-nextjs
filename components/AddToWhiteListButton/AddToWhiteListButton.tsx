@@ -1,17 +1,17 @@
 import styles from './AddToWhiteListButton.module.scss'
 import { Button } from '@mui/material'
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck'
-import useAddToMyList from '../../hooks/useAddToMyList'
+import useAddFilmToListInStorage from '../../hooks/useAddFilmToListInStorage'
 
 function AddToWhiteListButton() {
-    const {addToList} = useAddToMyList('whitelist')
+    const {addFilmToMyList} = useAddFilmToListInStorage('whitelist')
 
     return (
         <div className={styles._}>
             <Button
                 className={styles.button}
                 startIcon={<PlaylistAddCheckIcon/>}
-                onClick={addToList}
+                onClick={addFilmToMyList}
                 variant="contained"
                 color="success"
             >

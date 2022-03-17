@@ -1,17 +1,17 @@
 import styles from './AddToBlackListButton.module.scss'
 import { Button } from '@mui/material'
 import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove'
-import useAddToMyList from '../../hooks/useAddToMyList'
+import useAddFilmToListInStorage from '../../hooks/useAddFilmToListInStorage'
 
 function AddToBlackListButton() {
-    const {addToList} = useAddToMyList('blacklist')
+    const {addFilmToMyList} = useAddFilmToListInStorage('blacklist')
 
     return (
         <div className={styles._}>
             <Button
                 className={styles.button}
                 startIcon={<PlaylistRemoveIcon/>}
-                onClick={addToList}
+                onClick={addFilmToMyList}
                 variant="contained"
                 color="error"
             >

@@ -1,9 +1,30 @@
 import { rootReducer, setupStore } from './store/store'
-import top250ListFilms from './store/top250ListFilms'
+import { GridSelectionModel } from '@mui/x-data-grid'
 
 export type RootState = ReturnType<typeof rootReducer>
 export type AppStore = ReturnType<typeof setupStore>
 export type AppDispatch = AppStore['dispatch']
+
+export type filmTypes = {
+    filmId: number
+    filmLength: string
+    nameEn: null | string
+    nameRu: string
+    posterUrl: string
+    posterUrlPreview: string
+    rating: string
+    ratingChange: number | null
+    ratingVoteCount: number
+    year: string
+    genres: {
+        genre: string
+    }[]
+    countries: {
+        country: string
+    }[]
+}
+
+export type listFilmsTypes = filmTypes[]
 
 export type InitialStateTypes = {
     selectedCountry: { id: number | string, country: string }
@@ -12,7 +33,7 @@ export type InitialStateTypes = {
     selectedRating: [number, number]
     currentFilmNumber: number
     counter: number
-    listFilms: typeof top250ListFilms
+    listFilms: listFilmsTypes
     isChangedFilters: boolean
     currentPageResponse: number
     totalPagesResponse: number
@@ -20,6 +41,10 @@ export type InitialStateTypes = {
     isDisabledRandomFilmButton: boolean
     status: null | string
     error: null | string
+
+    whiteList: listFilmsTypes
+    blackList: listFilmsTypes
+    listIDsMovedFilms: GridSelectionModel
 }
 
 export type FetchParamsTypes = {
