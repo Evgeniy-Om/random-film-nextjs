@@ -1,10 +1,13 @@
-import { DataGrid, GridCellParams, GridColDef, ruRU } from '@mui/x-data-grid'
+import { DataGrid, GridCellParams, GridColDef, GridSelectionModel, ruRU } from '@mui/x-data-grid'
 import ImageNJS from 'next/image'
 import Head from 'next/head'
-import { listFilmsTypes } from '../../types'
 import styles from './FavoritesPage.module.scss'
 import Paper from '@mui/material/Paper'
 import MoveToBlackListButton from '../../components/MoveToBlackListButton/MoveToBlackListButton'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { kinopoiskSlice } from '../../store/kinopoiskSlice'
+import { useEffect } from 'react'
+import useMoveFromFavoritesToBlackList from '../../hooks/useMoveFromFavoritesToBlackList'
 
 const columns: GridColDef[] = [
     {
@@ -37,41 +40,37 @@ const columns: GridColDef[] = [
     {field: 'countries', headerName: 'Страны', minWidth: 150, maxWidth: 350, flex: 1, sortable: false},
 ]
 
-let listFilms: listFilmsTypes = []
-if (typeof window !== 'undefined') {
-    listFilms = JSON.parse(localStorage.getItem('whitelist') || '[]')
-}
-
-const rows = listFilms.map(f => ({
-    ...f,
-    countries: f.countries.map((c, i) => i === 0 ? c.country : ` ${c.country}`).toString(),
-    genres: f.genres.map((g, i) => i === 0 ? g.genre : ` ${g.genre}`).toString(),
-
-}))
-
 export default function FavoritesPage() {
+    const {whiteList} = useAppSelector(state => state.kinopoisk)
+    const {changeListIDsMovedFilms} = kinopoiskSlice.actions
+    const {moveFromFavoritesToBlackList} = useMoveFromFavoritesToBlackList()
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        moveFromFavoritesToBlackList()
+    }, [])
     return (
-        <>
+        <div className={styles._}>
             <Head>
                 <title>Избранное - генератор случайных фильмов</title>
             </Head>
             <Paper className={styles.paper}>
                 <DataGrid
-                    rows={rows}
+                    rows={whiteList}
                     getRowId={(row) => row.filmId}
                     rowHeight={125}
                     columns={columns}
                     pageSize={10}
-                    rowsPerPageOptions={[10,20,50,100]}
+                    rowsPerPageOptions={[10, 20, 50, 100]}
                     checkboxSelection
                     localeText={ruRU.components.MuiDataGrid.defaultProps.localeText}
-                    onSelectionModelChange={(ids) => {
-                        console.log(ids)
+                    onSelectionModelChange={(ids: GridSelectionModel) => {
+                        dispatch(changeListIDsMovedFilms(ids))
                     }}
                 />
             </Paper>
             <MoveToBlackListButton/>
 
-        </>
+        </div>
     )
 }

@@ -16,6 +16,10 @@ const initialState: InitialStateTypes = {
     isDisabledRandomFilmButton: false,
     status: null,
     error: null,
+
+    whiteList: [],
+    blackList: [],
+    listIDsMovedFilms: []
 }
 
 export default initialState

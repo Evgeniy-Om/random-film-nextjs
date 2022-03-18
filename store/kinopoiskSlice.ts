@@ -1,7 +1,8 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import shuffleListFilms from '../features/shuffleListFilms'
 import initialState from './initialState'
-import {fetchFilms} from './kinopoiskAsyncThunks'
+import { fetchFilms } from './kinopoiskAsyncThunks'
+import { GridSelectionModel } from '@mui/x-data-grid'
 
 export const kinopoiskSlice = createSlice({
         name: 'kinopoisk',
@@ -27,7 +28,7 @@ export const kinopoiskSlice = createSlice({
             },
             deleteCurrentFilmFromList(state) {
                 let list = [...state.listFilms]
-                list.splice(state.currentFilmNumber-1, 1)
+                list.splice(state.currentFilmNumber - 1, 1)
                 state.listFilms = list
                 state.currentFilmNumber--
             },
@@ -44,6 +45,12 @@ export const kinopoiskSlice = createSlice({
             },
             addFilms(state, action) {
                 state.listFilms = state.listFilms.concat(action.payload)
+            },
+            changeWhiteList(state, action: PayloadAction<any>) {
+                state.whiteList = action.payload
+            },
+            changeListIDsMovedFilms(state, action: PayloadAction<GridSelectionModel>) {
+                state.listIDsMovedFilms = action.payload
             },
             disableButton(state, action) {
                 state.isDisabledRandomFilmButton = action.payload
@@ -75,6 +82,5 @@ export const kinopoiskSlice = createSlice({
         }
     }
 )
-
 
 export default kinopoiskSlice.reducer
