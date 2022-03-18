@@ -2,6 +2,8 @@ import { useAppDispatch, useAppSelector } from './redux'
 import { listFilmsTypes } from '../types'
 import { excludeMovingFilmsFromList } from '../features/excludeMovingFilmsFromList'
 import { kinopoiskSlice } from '../store/kinopoiskSlice'
+import { getListFromLocalStorage } from '../features/getWhiteListFromLocalStorage'
+import { convertFormatListFilms } from '../features/convertFormatListFilms'
 
 function useMoveFromFavoritesToBlackList() {
     const {listFilms, listIDsMovedFilms} = useAppSelector(state => state.kinopoisk)
@@ -18,23 +20,17 @@ function useMoveFromFavoritesToBlackList() {
         localStorage.setItem('blacklist', JSON.stringify(updatedBlackList))
 
         // Удаляю перемещаемые фильмы из whitelist'a
-        const whiteList: listFilmsTypes = JSON.parse(localStorage.getItem('whitelist') || '[]')
+        const whiteList = getListFromLocalStorage('whitelist')
         const newList: listFilmsTypes = excludeMovingFilmsFromList(whiteList, movingFilms)
         localStorage.setItem('whitelist', JSON.stringify(newList))
 
-
+        const convertedList = convertFormatListFilms(newList)
+        dispatch(changeWhiteList(convertedList))
         // if (typeof window !== 'undefined') {
         //     listFilms = JSON.parse(localStorage.getItem('whitelist') || '[]')
         // }
 
-        // Преобразую список фильмов в формат подходящий для отображения в таблице
-        const rowsTable = newList.map(f => ({
-            ...f,
-            countries: f.countries.map((c, i) => i === 0 ? c.country : ` ${c.country}`).toString(),
-            genres: f.genres.map((g, i) => i === 0 ? g.genre : ` ${g.genre}`).toString(),
 
-        }))
-        dispatch(changeWhiteList(rowsTable))
     }
 
     return {moveFromFavoritesToBlackList}

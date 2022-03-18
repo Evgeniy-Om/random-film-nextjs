@@ -45,6 +45,8 @@ export type InitialStateTypes = {
     whiteList: listFilmsTypes
     blackList: listFilmsTypes
     listIDsMovedFilms: GridSelectionModel
+
+    pageSize: number
 }
 
 export type FetchParamsTypes = {

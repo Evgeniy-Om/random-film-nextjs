@@ -7,7 +7,8 @@ import MoveToBlackListButton from '../../components/MoveToBlackListButton/MoveTo
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { kinopoiskSlice } from '../../store/kinopoiskSlice'
 import { useEffect } from 'react'
-import useMoveFromFavoritesToBlackList from '../../hooks/useMoveFromFavoritesToBlackList'
+import { getListFromLocalStorage } from '../../features/getWhiteListFromLocalStorage'
+import { convertFormatListFilms } from '../../features/convertFormatListFilms'
 
 const columns: GridColDef[] = [
     {
@@ -41,14 +42,28 @@ const columns: GridColDef[] = [
 ]
 
 export default function FavoritesPage() {
-    const {whiteList} = useAppSelector(state => state.kinopoisk)
-    const {changeListIDsMovedFilms} = kinopoiskSlice.actions
-    const {moveFromFavoritesToBlackList} = useMoveFromFavoritesToBlackList()
+    const {whiteList, pageSize} = useAppSelector(state => state.kinopoisk)
+    const {changeListIDsMovedFilms, changePageSize, changeWhiteList} = kinopoiskSlice.actions
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        moveFromFavoritesToBlackList()
+        const whiteList = getListFromLocalStorage('whitelist')
+        const convertedList = convertFormatListFilms(whiteList)
+        dispatch(changeWhiteList(convertedList))
+
+        const pageSize = localStorage.getItem('pageSize')
+        let result
+        if (pageSize) {
+            result = Number(JSON.parse(pageSize))
+            dispatch(changePageSize(result))
+        }
     }, [])
+
+    const handleChangePageSize = (size: number) => {
+        dispatch(changePageSize(size))
+        localStorage.setItem('pageSize', JSON.stringify(size))
+    }
+
     return (
         <div className={styles._}>
             <Head>
@@ -60,8 +75,9 @@ export default function FavoritesPage() {
                     getRowId={(row) => row.filmId}
                     rowHeight={125}
                     columns={columns}
-                    pageSize={10}
+                    pageSize={pageSize}
                     rowsPerPageOptions={[10, 20, 50, 100]}
+                    onPageSizeChange={(newPageSize) => handleChangePageSize(newPageSize)}
                     checkboxSelection
                     localeText={ruRU.components.MuiDataGrid.defaultProps.localeText}
                     onSelectionModelChange={(ids: GridSelectionModel) => {

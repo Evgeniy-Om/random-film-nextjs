@@ -49,8 +49,14 @@ export const kinopoiskSlice = createSlice({
             changeWhiteList(state, action: PayloadAction<any>) {
                 state.whiteList = action.payload
             },
+            changeBlackList(state, action: PayloadAction<any>) {
+                state.blackList = action.payload
+            },
             changeListIDsMovedFilms(state, action: PayloadAction<GridSelectionModel>) {
                 state.listIDsMovedFilms = action.payload
+            },
+            changePageSize(state, action: PayloadAction<number>) {
+                state.pageSize = action.payload
             },
             disableButton(state, action) {
                 state.isDisabledRandomFilmButton = action.payload

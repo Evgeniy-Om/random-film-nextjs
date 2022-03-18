@@ -19,7 +19,9 @@ const initialState: InitialStateTypes = {
 
     whiteList: [],
     blackList: [],
-    listIDsMovedFilms: []
+    listIDsMovedFilms: [],
+
+    pageSize: 10
 }
 
 export default initialState
