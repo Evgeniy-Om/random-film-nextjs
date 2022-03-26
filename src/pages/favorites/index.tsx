@@ -52,10 +52,10 @@ export default function FavoritesPage() {
         dispatch(changeWhiteList(convertedList))
 
         const pageSize = localStorage.getItem('pageSize')
-        let result
+        let resultNumber
         if (pageSize) {
-            result = Number(JSON.parse(pageSize))
-            dispatch(changePageSize(result))
+            resultNumber = Number(JSON.parse(pageSize))
+            dispatch(changePageSize(resultNumber))
         }
     }, [])
 

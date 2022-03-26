@@ -1,7 +1,7 @@
 import axios from "axios"
 import shuffleListFilms from "./shuffleListFilms";
 
-function getListFilms(countryId, genreId, years, rating) {
+function getListFilms(countryId: number, genreId: number, years: number, rating: number) {
    axios({
       url: `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?country=${countryId}&genre=${genreId}&order=RATING&ratingFrom=1&ratingTo=10&yearFrom=1920&yearTo=2021&page=1`,
       headers: {
