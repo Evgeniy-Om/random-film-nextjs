@@ -14,6 +14,7 @@ import AddToWhiteListButton from '../AddToWhiteListButton/AddToWhiteListButton'
 import AddToBlackListButton from '../AddToBlackListButton/AddToBlackListButton'
 import Counter from '../Counter/Counter'
 import RatingSlider from '../RatingSlider'
+import Navbar from "../Navbar/Navbar";
 
 function App() {
     const {error} = useAppSelector(state => state.kinopoisk)
@@ -25,7 +26,9 @@ function App() {
     }, [])
 
     return (
+
         <div className={styles.wrapper}>
+            <Navbar/>
             <div className={styles.container}>
                 <div className={styles.filmWrapper}>
                     <Poster/>
