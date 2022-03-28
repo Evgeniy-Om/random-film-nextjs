@@ -14,7 +14,7 @@ const marks = [
    }
 ]
 
-function RatingSlider() {
+export function RatingSlider() {
    const {selectedRating} = useAppSelector(state => state.kinopoisk)
    const {changeNumPageResponse, disableButton, isNewFilters, selectRating} = kinopoiskSlice.actions
    const dispatch = useDispatch()
@@ -42,5 +42,3 @@ function RatingSlider() {
       </div>
    )
 }
-
-export default RatingSlider

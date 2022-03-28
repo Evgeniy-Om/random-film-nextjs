@@ -11,7 +11,7 @@ export function Navigation() {
             </li>
             <li>
                 <Link href="/blacklist">
-                    <a className={styles.link}>Блек&#8209;лист</a>
+                    <a className={styles.link}>Блэк&#8209;лист</a>
                 </Link>
             </li>
         </ul>

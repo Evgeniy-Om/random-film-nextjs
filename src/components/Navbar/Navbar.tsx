@@ -5,12 +5,12 @@ import { Logo } from '../Logo/Logo'
 
 function Navbar() {
     return (
-        <div className={styles._}>
+        <header className={styles._}>
             <div className={styles.wrapper}>
                 <Logo/>
                 <Navigation/>
             </div>
-        </div>
+        </header>
     )
 }
 

@@ -1,7 +1,6 @@
 import { DataGrid, GridCellParams, GridColDef, GridSelectionModel, ruRU } from '@mui/x-data-grid'
 import ImageNJS from 'next/image'
-import Head from 'next/head'
-import styles from './FavoritesPage.module.scss'
+import styles from './FavoritesPageComponent.module.scss'
 import Paper from '@mui/material/Paper'
 import MoveToBlackListButton from '../../components/MoveToBlackListButton/MoveToBlackListButton'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
@@ -41,7 +40,7 @@ const columns: GridColDef[] = [
     {field: 'countries', headerName: 'Страны', minWidth: 150, maxWidth: 350, flex: 1, sortable: false},
 ]
 
-export default function FavoritesPage() {
+export default function FavoritesPageComponent() {
     const {whiteList, pageSize} = useAppSelector(state => state.kinopoisk)
     const {changeListIDsMovedFilms, changePageSize, changeWhiteList} = kinopoiskSlice.actions
     const dispatch = useAppDispatch()
@@ -66,9 +65,12 @@ export default function FavoritesPage() {
 
     return (
         <div className={styles._}>
-            <Head>
-                <title>Избранное - генератор случайных фильмов</title>
-            </Head>
+            <h1>Избранное</h1>
+            <div className={styles.buttonsContainer}>
+                <MoveToBlackListButton/>
+                <MoveToBlackListButton/>
+                <MoveToBlackListButton/>
+            </div>
             <Paper className={styles.paper}>
                 <DataGrid
                     rows={whiteList}
@@ -85,8 +87,6 @@ export default function FavoritesPage() {
                     }}
                 />
             </Paper>
-            <MoveToBlackListButton/>
-
         </div>
     )
 }

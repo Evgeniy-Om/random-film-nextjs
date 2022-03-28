@@ -1,20 +1,22 @@
-import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
-import Head from 'next/head'
+import React, { ReactElement } from 'react'
+import Layout from '../layout/Layout'
 
-const App = dynamic(() => import('../components/App/App'), {ssr: false})
+const HomePageComponent = dynamic(
+    () => import('../page-components/home/HomePageComponent'),
+    {ssr: false}
+)
 
-const Home: NextPage = () => {
+export default function HomePage() {
+    return <HomePageComponent/>
+}
 
+HomePage.getLayout = function getLayout(page: ReactElement) {
     return (
-        <>
-            <Head>
-                <title>Генератор случайных фильмов</title>
-                <link rel="icon" href="/favicon.ico"/>
-            </Head>
-            <App/>
-        </>
+        <Layout>
+            {page}
+        </Layout>
     )
 }
 
-export default Home
+

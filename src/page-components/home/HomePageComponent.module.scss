@@ -1,0 +1,52 @@
+.wrapper {
+  //display: flex;
+  //flex-direction: column;
+  //justify-content: center;
+  //height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.filmWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 450px;
+  margin-top: 50px;
+
+  @media (max-height: 568px) {
+    height: 450px;
+    margin-top: 50px;
+  }
+}
+
+.filtersWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mainButtonsContainer {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.listsButtonsContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}

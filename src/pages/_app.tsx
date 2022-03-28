@@ -3,13 +3,26 @@ import type { AppProps } from 'next/app'
 import { setupStore } from '../store/store'
 import { StyledEngineProvider } from '@mui/styled-engine'
 import { Provider } from 'react-redux'
+import { ReactElement, ReactNode } from 'react'
+import { NextPage } from 'next'
 
-function MyApp({Component, pageProps}: AppProps) {
-    return <Provider store={setupStore()}>
-        <StyledEngineProvider injectFirst>
-            <Component {...pageProps} />
-        </StyledEngineProvider>
-    </Provider>
+type NextPageWithLayout = NextPage & {
+    getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+    Component: NextPageWithLayout
+}
+
+function MyApp({Component, pageProps}: AppPropsWithLayout) {
+    const getLayout = Component.getLayout || ((page) => page)
+    return (
+            <Provider store={setupStore()}>
+                <StyledEngineProvider injectFirst>
+                    {getLayout(<Component {...pageProps} />)}
+                </StyledEngineProvider>
+            </Provider>
+    )
 
 }
 

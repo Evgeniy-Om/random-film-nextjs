@@ -15,7 +15,7 @@ const marks = [
    }
 ]
 
-function YearsSlider() {
+export function YearsSlider() {
    const {selectedYears} = useAppSelector(state => state.kinopoisk)
    const {changeNumPageResponse, disableButton, isNewFilters, selectYears} = kinopoiskSlice.actions
    const dispatch = useDispatch()
@@ -43,5 +43,3 @@ function YearsSlider() {
       </div>
    )
 }
-
-export default YearsSlider

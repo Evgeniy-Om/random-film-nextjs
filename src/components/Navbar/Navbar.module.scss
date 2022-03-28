@@ -1,11 +1,12 @@
 ._ {
-  border-bottom: 1px solid var(--primery-color);
+  //border-bottom: 1px solid var(--primery-color);
+  margin-top: 30px;
 }
 
 .wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 40px;
+  //margin: 0 5vw;
   height: 50px;
 }

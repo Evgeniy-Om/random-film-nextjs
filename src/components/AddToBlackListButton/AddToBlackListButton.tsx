@@ -15,7 +15,7 @@ function AddToBlackListButton() {
                 variant="contained"
                 color="error"
             >
-                В блек-лист
+                В блэк-лист
             </Button>
         </div>
     )
