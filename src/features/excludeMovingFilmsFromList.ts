@@ -1,6 +1,6 @@
-import { listFilmsTypes } from '../types'
+import { filmTypes } from '../types'
 
-export function excludeMovingFilmsFromList (list: listFilmsTypes, excludeFilms: listFilmsTypes) {
+export function excludeMovingFilmsFromList (list: filmTypes[], excludeFilms: filmTypes[]) {
     let updatedList = []
     for (let i = 0; i < list.length; i++) {
         let includes = false

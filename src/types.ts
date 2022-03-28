@@ -24,8 +24,6 @@ export type filmTypes = {
     }[]
 }
 
-export type listFilmsTypes = filmTypes[]
-
 export type InitialStateTypes = {
     selectedCountry: { id: number | string, country: string }
     selectedGenre: { id: number, genre: string }
@@ -33,7 +31,7 @@ export type InitialStateTypes = {
     selectedRating: [number, number]
     currentFilmNumber: number
     counter: number
-    listFilms: listFilmsTypes
+    listFilms: filmTypes[]
     isChangedFilters: boolean
     currentPageResponse: number
     totalPagesResponse: number
@@ -42,8 +40,8 @@ export type InitialStateTypes = {
     status: null | string
     error: null | string
 
-    whiteList: listFilmsTypes
-    blackList: listFilmsTypes
+    whiteList: filmTypes[]
+    blackList: filmTypes[]
     listIDsMovedFilms: GridSelectionModel
 
     pageSize: number
@@ -60,4 +58,4 @@ export type FetchParamsTypes = {
     genre?: number
 }
 
-export type ListFilmsTypes = {}
+export type TypeListTypes = 'whitelist' | 'blacklist'

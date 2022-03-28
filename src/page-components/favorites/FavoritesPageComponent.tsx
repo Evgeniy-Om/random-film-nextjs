@@ -8,6 +8,7 @@ import { kinopoiskSlice } from '../../store/kinopoiskSlice'
 import { useEffect } from 'react'
 import { getListFromLocalStorage } from '../../features/getWhiteListFromLocalStorage'
 import { convertFormatListFilms } from '../../features/convertFormatListFilms'
+import DeleteFromListButton from '../../components/DeleteFromListButton/DeleteFromListButton'
 
 const columns: GridColDef[] = [
     {
@@ -67,8 +68,7 @@ export default function FavoritesPageComponent() {
         <div className={styles._}>
             <h1>Избранное</h1>
             <div className={styles.buttonsContainer}>
-                <MoveToBlackListButton/>
-                <MoveToBlackListButton/>
+                <DeleteFromListButton typeList="whitelist" />
                 <MoveToBlackListButton/>
             </div>
             <Paper className={styles.paper}>
