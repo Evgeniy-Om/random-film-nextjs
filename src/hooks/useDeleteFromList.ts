@@ -1,31 +1,28 @@
 import { useAppDispatch, useAppSelector } from './redux'
-import { listFilmsTypes } from '../types'
+import { filmTypes, TypeListTypes } from '../types'
 import { excludeMovingFilmsFromList } from '../features/excludeMovingFilmsFromList'
 import { kinopoiskSlice } from '../store/kinopoiskSlice'
 import { getListFromLocalStorage } from '../features/getWhiteListFromLocalStorage'
 import { convertFormatListFilms } from '../features/convertFormatListFilms'
 
-export default function useDeleteFromList() {
+export default function useDeleteFromList(typeList: TypeListTypes) {
     const {listFilms, listIDsMovedFilms} = useAppSelector(state => state.kinopoisk)
-    const {changeWhiteList} = kinopoiskSlice.actions
+    const {changeWhiteList, changeBlackList} = kinopoiskSlice.actions
     const dispatch = useAppDispatch()
 
     function deleteFromList() {
         // Преобразование массива Id фильмов в массив фильмов
-        const movingFilms = listIDsMovedFilms.map(i => listFilms.find(y => y.filmId === i)!)
+        const deleteFilms = listIDsMovedFilms.map(i => listFilms.find(y => y.filmId === i)!)
 
-        // Удаляю перемещаемые фильмы из whitelist'a
-        const whiteList = getListFromLocalStorage('whitelist')
-        const newList: listFilmsTypes = excludeMovingFilmsFromList(whiteList, movingFilms)
-        localStorage.setItem('whitelist', JSON.stringify(newList))
+        // Удаляю выбранные фильмы из листа
+        const selectedList = getListFromLocalStorage(typeList)
+        const newList: filmTypes[] = excludeMovingFilmsFromList(selectedList, deleteFilms)
+        localStorage.setItem(typeList, JSON.stringify(newList))
 
+        // Преобразование формата записи стран и жанров для отображении в таблице
         const convertedList = convertFormatListFilms(newList)
-        dispatch(changeWhiteList(convertedList))
-        // if (typeof window !== 'undefined') {
-        //     listFilms = JSON.parse(localStorage.getItem('whitelist') || '[]')
-        // }
-
-
+        if (typeList === 'whitelist') dispatch(changeWhiteList(convertedList))
+        if (typeList === 'blacklist') dispatch(changeBlackList(convertedList))
     }
 
     return {deleteFromList}

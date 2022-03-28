@@ -1,5 +1,6 @@
 ._ {
 	//margin: 7vh 5vw;
+	margin-bottom: 50px;
 }
 
 .poster {
@@ -17,5 +18,6 @@
 
 .buttonsContainer {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
+	gap: 10px;
 }
