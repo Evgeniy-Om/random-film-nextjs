@@ -13,10 +13,10 @@
 .paper {
 	//margin: 5vh auto;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 }
 
-.grid {
+.flexContainer {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
@@ -33,4 +33,8 @@
 	display: flex;
 	justify-content: flex-end;
 	gap: 10px;
+}
+
+.dataGrid {
+	//height: 2250px;
 }

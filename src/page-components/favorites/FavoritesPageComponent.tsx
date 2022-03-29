@@ -85,7 +85,7 @@ export default function FavoritesPageComponent() {
     return (
         <div className={styles._}>
 
-            <div className={styles.grid}>
+            <div className={styles.flexContainer}>
                 <h1 className={styles.title}>Избранное</h1>
                 <div className={styles.buttonsContainer}>
                     <DeleteFromListButton typeList={FAVORITES_LIST}/>
@@ -94,6 +94,7 @@ export default function FavoritesPageComponent() {
             </div>
             <Paper className={styles.paper}>
                 <DataGrid
+                    className={styles.dataGrid}
                     rows={favoritesList}
                     getRowId={(row) => row.filmId}
                     rowHeight={125}
@@ -102,6 +103,7 @@ export default function FavoritesPageComponent() {
                     rowsPerPageOptions={[10, 20, 50, 100]}
                     onPageSizeChange={(newPageSize) => handleChangePageSize(newPageSize)}
                     checkboxSelection
+                    autoHeight={true}
                     localeText={ruRU.components.MuiDataGrid.defaultProps.localeText}
                     onSelectionModelChange={(ids: GridSelectionModel) => {
                         dispatch(changeListIDsMovedFilms(ids))
