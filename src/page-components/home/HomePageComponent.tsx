@@ -33,7 +33,8 @@ export default function HomePageComponent () {
                 <div className={styles.mainButtonsContainer}>
                     <BackButton/>
                     <RandomFilmButton/>
-                    <Counter/>
+                    {/*<Counter/>*/}
+                    <WatchButton/>
                 </div>
                 <div className={styles.listsButtonsContainer}>
                     <AddToWhiteListButton/>
