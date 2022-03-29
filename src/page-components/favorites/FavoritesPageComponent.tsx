@@ -6,9 +6,10 @@ import MoveToBlackListButton from '../../components/MoveToBlackListButton/MoveTo
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { kinopoiskSlice } from '../../store/kinopoiskSlice'
 import { useEffect } from 'react'
-import { getListFromLocalStorage } from '../../features/getWhiteListFromLocalStorage'
+import { getListFromLocalStorage } from '../../features/getFavoritesListFromLocalStorage'
 import { convertFormatListFilms } from '../../features/convertFormatListFilms'
 import DeleteFromListButton from '../../components/DeleteFromListButton/DeleteFromListButton'
+import { FAVORITES_LIST } from '../../constants'
 
 const columns: GridColDef[] = [
     {
@@ -42,14 +43,14 @@ const columns: GridColDef[] = [
 ]
 
 export default function FavoritesPageComponent() {
-    const {whiteList, pageSize} = useAppSelector(state => state.kinopoisk)
-    const {changeListIDsMovedFilms, changePageSize, changeWhiteList} = kinopoiskSlice.actions
+    const {favoritesList, pageSize} = useAppSelector(state => state.kinopoisk)
+    const {changeListIDsMovedFilms, changePageSize, changeFavoritesList} = kinopoiskSlice.actions
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        const whiteList = getListFromLocalStorage('whitelist')
-        const convertedList = convertFormatListFilms(whiteList)
-        dispatch(changeWhiteList(convertedList))
+        const favoritesList = getListFromLocalStorage(FAVORITES_LIST)
+        const convertedList = convertFormatListFilms(favoritesList)
+        dispatch(changeFavoritesList(convertedList))
 
         const pageSize = localStorage.getItem('pageSize')
         let resultNumber
@@ -68,12 +69,12 @@ export default function FavoritesPageComponent() {
         <div className={styles._}>
             <h1>Избранное</h1>
             <div className={styles.buttonsContainer}>
-                <DeleteFromListButton typeList="whitelist" />
+                <DeleteFromListButton typeList={FAVORITES_LIST} />
                 <MoveToBlackListButton/>
             </div>
             <Paper className={styles.paper}>
                 <DataGrid
-                    rows={whiteList}
+                    rows={favoritesList}
                     getRowId={(row) => row.filmId}
                     rowHeight={125}
                     columns={columns}

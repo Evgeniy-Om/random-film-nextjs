@@ -1,20 +1,21 @@
 import { useAppSelector } from './redux'
 import { kinopoiskSlice } from '../store/kinopoiskSlice'
 import { useDispatch } from 'react-redux'
+import { TypeListTypes } from '../types'
 
-function useAddFilmToListInStorage(typeList: "whitelist" | "blacklist") {
+function useAddFilmToListInStorage(typeList: TypeListTypes) {
     const {currentFilmNumber, listFilms, counter} = useAppSelector(state => state.kinopoisk)
     const {changeCurrentFilmNumber, changeCounter, deleteCurrentFilmFromList} = kinopoiskSlice.actions
     const dispatch = useDispatch()
 
-    function addFilmToMyList () {
+    function addFilmToMyList() {
         // Записываю в localStorage
         const filmsInList = JSON.parse(localStorage.getItem(typeList) || '[]')
         const updatedList = filmsInList.concat(listFilms[currentFilmNumber])
         localStorage.setItem(typeList, JSON.stringify(updatedList))
 
         dispatch(changeCurrentFilmNumber(currentFilmNumber + 1))
-        dispatch(changeCounter(counter-1))
+        dispatch(changeCounter(counter - 1))
 
         //Удаляют из общего листа текущий фильм
         dispatch(deleteCurrentFilmFromList())

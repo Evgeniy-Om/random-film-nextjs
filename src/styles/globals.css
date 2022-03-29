@@ -49,3 +49,7 @@ a {
 .MuiDataGrid-cell.MuiDataGrid-cell {
 	white-space: normal;
 }
+
+.MuiDataGrid-menuIcon.MuiDataGrid-menuIcon {
+	margin-right: -5px;
+}

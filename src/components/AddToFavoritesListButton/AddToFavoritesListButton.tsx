@@ -1,10 +1,11 @@
-import styles from './AddToWhiteListButton.module.scss'
+import styles from './AddToFavoritesListButton.module.scss'
 import { Button } from '@mui/material'
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck'
 import useAddFilmToListInStorage from '../../hooks/useAddFilmToListInStorage'
+import { FAVORITES_LIST } from '../../constants'
 
-function AddToWhiteListButton() {
-    const {addFilmToMyList} = useAddFilmToListInStorage('whitelist')
+function AddToFavoritesListButton() {
+    const {addFilmToMyList} = useAddFilmToListInStorage(FAVORITES_LIST)
 
     return (
         <div className={styles._}>
@@ -21,4 +22,4 @@ function AddToWhiteListButton() {
     )
 }
 
-export default AddToWhiteListButton
+export default AddToFavoritesListButton

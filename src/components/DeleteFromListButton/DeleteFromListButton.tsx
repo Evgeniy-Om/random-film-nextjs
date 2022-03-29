@@ -3,6 +3,7 @@ import { Button } from '@mui/material'
 import useDeleteFromList from '../../hooks/useDeleteFromList'
 import { TypeListTypes } from '../../types'
 import DeleteIcon from '@mui/icons-material/Delete'
+import { BLACK_LIST, FAVORITES_LIST } from '../../constants'
 
 type PropsTypes = {
     typeList: TypeListTypes
@@ -17,8 +18,8 @@ function DeleteFromListButton({typeList}: PropsTypes) {
                 onClick={deleteFromList}
                 variant="contained"
             >
-                {typeList === 'whitelist' && 'Удалить из избранного'}
-                {typeList === 'blacklist' && 'Удалить из блэк-листа'}
+                {typeList === FAVORITES_LIST && 'Удалить из избранного'}
+                {typeList === BLACK_LIST && 'Удалить из блэк-листа'}
             </Button>
         </div>
     )

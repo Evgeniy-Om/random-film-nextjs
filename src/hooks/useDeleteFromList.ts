@@ -2,12 +2,13 @@ import { useAppDispatch, useAppSelector } from './redux'
 import { filmTypes, TypeListTypes } from '../types'
 import { excludeMovingFilmsFromList } from '../features/excludeMovingFilmsFromList'
 import { kinopoiskSlice } from '../store/kinopoiskSlice'
-import { getListFromLocalStorage } from '../features/getWhiteListFromLocalStorage'
+import { getListFromLocalStorage } from '../features/getFavoritesListFromLocalStorage'
 import { convertFormatListFilms } from '../features/convertFormatListFilms'
+import { BLACK_LIST, FAVORITES_LIST } from '../constants'
 
 export default function useDeleteFromList(typeList: TypeListTypes) {
     const {listFilms, listIDsMovedFilms} = useAppSelector(state => state.kinopoisk)
-    const {changeWhiteList, changeBlackList} = kinopoiskSlice.actions
+    const {changeFavoritesList, changeBlackList} = kinopoiskSlice.actions
     const dispatch = useAppDispatch()
 
     function deleteFromList() {
@@ -21,8 +22,8 @@ export default function useDeleteFromList(typeList: TypeListTypes) {
 
         // Преобразование формата записи стран и жанров для отображении в таблице
         const convertedList = convertFormatListFilms(newList)
-        if (typeList === 'whitelist') dispatch(changeWhiteList(convertedList))
-        if (typeList === 'blacklist') dispatch(changeBlackList(convertedList))
+        if (typeList === FAVORITES_LIST) dispatch(changeFavoritesList(convertedList))
+        if (typeList === BLACK_LIST) dispatch(changeBlackList(convertedList))
     }
 
     return {deleteFromList}

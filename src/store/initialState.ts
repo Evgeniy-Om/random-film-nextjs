@@ -17,7 +17,7 @@ const initialState: InitialStateTypes = {
     status: null,
     error: null,
 
-    whiteList: [],
+    favoritesList: [],
     blackList: [],
     listIDsMovedFilms: [],
 

@@ -46,8 +46,8 @@ export const kinopoiskSlice = createSlice({
             addFilms(state, action) {
                 state.listFilms = state.listFilms.concat(action.payload)
             },
-            changeWhiteList(state, action: PayloadAction<any>) {
-                state.whiteList = action.payload
+            changeFavoritesList(state, action: PayloadAction<any>) {
+                state.favoritesList = action.payload
             },
             changeBlackList(state, action: PayloadAction<any>) {
                 state.blackList = action.payload

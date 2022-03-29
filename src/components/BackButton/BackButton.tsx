@@ -27,6 +27,7 @@ function BackButton() {
                 variant="contained"
                 disabled={!currentFilmNumber}
             >
+                Назад
             </Button>
         </div>
     )

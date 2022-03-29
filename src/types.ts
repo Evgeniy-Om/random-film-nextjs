@@ -40,7 +40,7 @@ export type InitialStateTypes = {
     status: null | string
     error: null | string
 
-    whiteList: filmTypes[]
+    favoritesList: filmTypes[]
     blackList: filmTypes[]
     listIDsMovedFilms: GridSelectionModel
 
@@ -58,4 +58,4 @@ export type FetchParamsTypes = {
     genre?: number
 }
 
-export type TypeListTypes = 'whitelist' | 'blacklist'
+export type TypeListTypes = 'favorites_list' | 'black_list'

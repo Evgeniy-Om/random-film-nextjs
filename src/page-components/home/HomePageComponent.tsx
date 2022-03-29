@@ -7,12 +7,12 @@ import Poster from '../../components/Poster/Poster'
 import NameFilm from '../../components/NameFilm/NameFilm'
 import BackButton from '../../components/BackButton/BackButton'
 import RandomFilmButton from '../../components/RandomFilmButton/RandomFilmButton'
-import Counter from '../../components/Counter/Counter'
-import AddToWhiteListButton from '../../components/AddToWhiteListButton/AddToWhiteListButton'
+import AddToFavoritesListButton from '../../components/AddToFavoritesListButton/AddToFavoritesListButton'
 import AddToBlackListButton from '../../components/AddToBlackListButton/AddToBlackListButton'
 import CountrySelect from '../../components/CountrySelect'
 import GenreSelect from '../../components/GenreSelect'
 import { RatingSlider, YearsSlider } from '../../components'
+import { WatchButton } from '../../components/WatchButton/WatchButton'
 
 export default function HomePageComponent () {
     const {error} = useAppSelector(state => state.kinopoisk)
@@ -37,7 +37,7 @@ export default function HomePageComponent () {
                     <WatchButton/>
                 </div>
                 <div className={styles.listsButtonsContainer}>
-                    <AddToWhiteListButton/>
+                    <AddToFavoritesListButton/>
                     <AddToBlackListButton/>
                 </div>
                 {error && <h2>Ошибка: {error}</h2>}

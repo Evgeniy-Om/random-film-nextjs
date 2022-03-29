@@ -4,11 +4,13 @@
 }
 
 .button {
-	min-width: 45px;
+	//min-width: 120px;
 	height: 45px;
-	padding: 10px 0;
+	padding: 10px 20px;
+	text-transform: none;
 
 	span {
-		margin-right: -5px;
+		//margin-right: -5px;
+
 	}
 }
