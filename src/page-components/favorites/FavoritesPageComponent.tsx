@@ -10,13 +10,14 @@ import { getListFromLocalStorage } from '../../features/getFavoritesListFromLoca
 import { convertFormatListFilms } from '../../features/convertFormatListFilms'
 import DeleteFromListButton from '../../components/DeleteFromListButton/DeleteFromListButton'
 import { FAVORITES_LIST } from '../../constants'
+import { WatchButton } from '../../components/WatchButton/WatchButton'
 
 const columns: GridColDef[] = [
     {
         field: 'posterUrlPreview',
-        headerName: 'Постер',
+        headerName: '',
         sortable: false,
-        filterable: true,
+        filterable: false,
         width: 100,
         disableColumnMenu: true,
         renderCell: (param: GridCellParams<string>) => {
@@ -40,6 +41,22 @@ const columns: GridColDef[] = [
     {field: 'rating', headerName: 'Рейтинг', minWidth: 80, maxWidth: 130, flex: 4},
     {field: 'genres', headerName: 'Жанры', minWidth: 150, maxWidth: 350, flex: 2, sortable: false},
     {field: 'countries', headerName: 'Страны', minWidth: 150, maxWidth: 350, flex: 1, sortable: false},
+    {
+        field: 'button',
+        headerName: '',
+        sortable: false,
+        filterable: false,
+        minWidth: 150,
+        disableColumnMenu: true,
+        renderCell: (param: GridCellParams<string>) => {
+            return (
+                // <div href={param.value} className={styles._} onClick={(e) => e.stopPropagation()}>
+                <div className={styles.button}>
+                    <WatchButton name={param.row.nameRu}/>
+                </div>
+            )
+        }
+    },
 ]
 
 export default function FavoritesPageComponent() {
