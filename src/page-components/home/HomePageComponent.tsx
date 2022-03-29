@@ -14,6 +14,7 @@ import GenreSelect from '../../components/GenreSelect'
 import { RatingSlider, YearsSlider } from '../../components'
 import { WatchButton } from '../../components/WatchButton/WatchButton'
 
+
 export default function HomePageComponent () {
     const {error} = useAppSelector(state => state.kinopoisk)
     const {shuffle} = kinopoiskSlice.actions

@@ -1,7 +1,7 @@
 import styles from './MoveToBlackListButton.module.scss'
 import { Button } from '@mui/material'
-import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove'
 import useMoveFromFavoritesToBlackList from '../../hooks/useMoveFromFavoritesToBlackList'
+import DeleteIcon from '@mui/icons-material/Delete'
 
 function MoveToBlackListButton() {
     const {moveFromFavoritesToBlackList} = useMoveFromFavoritesToBlackList()
@@ -9,7 +9,7 @@ function MoveToBlackListButton() {
         <div className={styles._}>
             <Button
                 className={styles.button}
-                startIcon={<PlaylistRemoveIcon/>}
+                startIcon={<DeleteIcon/>}
                 onClick={moveFromFavoritesToBlackList}
                 variant="contained"
                 color="error"
