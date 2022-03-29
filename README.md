@@ -1,5 +1,5 @@
 ## Генератор случайных фильмов
-![2022-03-28_17-25-11](https://user-images.githubusercontent.com/65108015/160420540-898d3cb1-e49d-4d3e-88c5-4cf143ab67bb.png)
+![2022-03-29_17-52-02](https://user-images.githubusercontent.com/65108015/160640474-ff958631-3a8f-4daf-b01c-cd096fd8b50e.png)
 
 
 Стадия разработки: добавление листов: Избранное и Блэк-лист
