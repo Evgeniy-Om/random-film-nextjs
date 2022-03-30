@@ -55,6 +55,10 @@ a {
 	display: none;
 }
 
+.active-link {
+	color: var(--primery-color);
+}
+
 /* Переопределение CSS MUI */
 .MuiDataGrid-cell.MuiDataGrid-cell {
 	white-space: normal;

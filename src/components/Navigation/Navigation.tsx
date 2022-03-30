@@ -1,19 +1,30 @@
 import Link from 'next/link'
 import styles from './Navigation.module.scss'
+import { useRouter } from 'next/router'
 
 export function Navigation() {
+    const route = useRouter().route
+    const menuItems = [
+        {link: '/', text: 'Главная'},
+        {link: '/favorites', text: 'Избранное'},
+        {link: '/blacklist', text: 'Блэк-лист'},
+        {link: '/settings', text: 'Настройки'},
+    ]
     return (
         <ul className={styles.list}>
-            <li>
-                <Link href="/favorites">
-                    <a className={styles.link}>Избранное</a>
-                </Link>
-            </li>
-            <li>
-                <Link href="/blacklist">
-                    <a className={styles.link}>Блэк&#8209;лист</a>
-                </Link>
-            </li>
+            {menuItems.map((i, index) => {
+                if (route === '/' && index === 0) return <></>
+
+                let classes = `${styles.link} `
+                if (route === i.link) classes += 'active-link'
+                return (
+                    <li>
+                        <Link href={i.link}>
+                            <a className={classes}>{i.text}</a>
+                        </Link>
+                    </li>
+                )
+            })}
         </ul>
     )
 }
