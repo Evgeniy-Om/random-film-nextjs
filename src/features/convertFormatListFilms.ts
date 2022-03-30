@@ -1,6 +1,6 @@
-import { filmTypes } from '../types'
+import { FilmTypes } from '../types'
 
-export function convertFormatListFilms(listFilms: filmTypes[]) {
+export function convertFormatListFilms(listFilms: FilmTypes[]) {
     return listFilms.map(f => ({
         ...f,
         countries: f.countries.map((c, i) => i === 0 ? c.country : ` ${c.country}`).toString(),

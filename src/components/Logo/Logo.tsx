@@ -8,7 +8,7 @@ export function Logo() {
         <Link href="/">
             <a className={styles.link}>
                 <ImageNJS
-                    src="/UI_Blue_2_of_3_30-512.png"
+                    src="/logo.png"
                     width={30}
                     height={30}
                     className={styles.image}

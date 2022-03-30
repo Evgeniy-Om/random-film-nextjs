@@ -5,7 +5,7 @@ export type RootState = ReturnType<typeof rootReducer>
 export type AppStore = ReturnType<typeof setupStore>
 export type AppDispatch = AppStore['dispatch']
 
-export type filmTypes = {
+export type FilmTypes = {
     filmId: number
     filmLength: string
     nameEn: null | string
@@ -31,7 +31,7 @@ export type InitialStateTypes = {
     selectedRating: [number, number]
     currentFilmNumber: number
     counter: number
-    listFilms: filmTypes[]
+    listFilms: FilmTypes[]
     isChangedFilters: boolean
     currentPageResponse: number
     totalPagesResponse: number
@@ -40,8 +40,8 @@ export type InitialStateTypes = {
     status: null | string
     error: null | string
 
-    favoritesList: filmTypes[]
-    blackList: filmTypes[]
+    favoritesList: FilmTypes[]
+    blackList: FilmTypes[]
     listIDsMovedFilms: GridSelectionModel
 
     pageSize: number

@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from './redux'
-import { filmTypes, TypeListTypes } from '../types'
+import { FilmTypes, TypeListTypes } from '../types'
 import { excludeMovingFilmsFromList } from '../features/excludeMovingFilmsFromList'
 import { kinopoiskSlice } from '../store/kinopoiskSlice'
 import { getListFromLocalStorage } from '../features/getFavoritesListFromLocalStorage'
@@ -17,7 +17,7 @@ export default function useDeleteFromList(typeList: TypeListTypes) {
 
         // Удаляю выбранные фильмы из листа
         const selectedList = getListFromLocalStorage(typeList)
-        const newList: filmTypes[] = excludeMovingFilmsFromList(selectedList, deleteFilms)
+        const newList: FilmTypes[] = excludeMovingFilmsFromList(selectedList, deleteFilms)
         localStorage.setItem(typeList, JSON.stringify(newList))
 
         // Преобразование формата записи стран и жанров для отображении в таблице

@@ -1,24 +1,24 @@
 import React, { ReactElement, useEffect } from 'react'
 import Layout from '../layout/Layout'
-import { FAVORITES_LIST } from '../constants'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { kinopoiskSlice } from '../store/kinopoiskSlice'
 import { getListFromLocalStorage } from '../features/getFavoritesListFromLocalStorage'
+import { BLACK_LIST } from '../constants'
 import { convertFormatListFilms } from '../features/convertFormatListFilms'
 import styles from '../styles/ListPage.module.scss'
 import DeleteFromListButton from '../components/DeleteFromListButton/DeleteFromListButton'
-import MoveToBlackListButton from '../components/MoveToBlackListButton/MoveToBlackListButton'
+import MoveToFavoritesButton from '../components/MoveToFavoritesButton/MoveToFavoritesButton'
 import { DataGrid } from '../components/DataGrid/DataGrid'
 
-export default function FavoritesPage() {
-    const {favoritesList} = useAppSelector(state => state.kinopoisk)
-    const {changePageSize, changeFavoritesList} = kinopoiskSlice.actions
+export default function BlackListPage() {
+    const {blackList} = useAppSelector(state => state.kinopoisk)
+    const {changePageSize, changeBlackList} = kinopoiskSlice.actions
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        const favorites = getListFromLocalStorage(FAVORITES_LIST)
-        const convertedList = convertFormatListFilms(favorites)
-        dispatch(changeFavoritesList(convertedList))
+        const blackListFromStorage = getListFromLocalStorage(BLACK_LIST)
+        const convertedList = convertFormatListFilms(blackListFromStorage)
+        dispatch(changeBlackList(convertedList))
 
         const pageSize = localStorage.getItem('pageSize')
         let resultNumber
@@ -31,20 +31,20 @@ export default function FavoritesPage() {
     return (
         <div className={styles._}>
             <div className={styles.flexContainer}>
-                <h1 className={styles.title}>Избранное</h1>
+                <h1 className={styles.title}>Блэк-лист</h1>
                 <div className={styles.buttonsContainer}>
-                    <DeleteFromListButton typeList={FAVORITES_LIST}/>
-                    <MoveToBlackListButton/>
+                    <DeleteFromListButton typeList={BLACK_LIST}/>
+                    <MoveToFavoritesButton/>
                 </div>
             </div>
-            <DataGrid listFilms={favoritesList}/>
+            <DataGrid listFilms={blackList}/>
         </div>
     )
 }
 
-FavoritesPage.getLayout = function getLayout(page: ReactElement) {
+BlackListPage.getLayout = function getLayout(page: ReactElement) {
     return (
-        <Layout title="Избранное">
+        <Layout title="Блэк-лист">
             {page}
         </Layout>
     )

@@ -3,19 +3,6 @@
 	margin-bottom: 50px;
 }
 
-.poster {
-	position: relative;
-	display: block;
-	width: 100%;
-	height: 100%;
-}
-
-.paper {
-	//margin: 5vh auto;
-	width: 100%;
-	height: 100%;
-}
-
 .flexContainer {
 	display: flex;
 	justify-content: space-between;
@@ -33,8 +20,4 @@
 	display: flex;
 	justify-content: flex-end;
 	gap: 10px;
-}
-
-.dataGrid {
-	//height: 2250px;
 }
